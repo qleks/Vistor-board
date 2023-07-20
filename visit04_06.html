@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>방명록</title>
+  <style>
+    /* 기본 스타일 */
+    body {
+      overscroll-behavior: none;
+      /* -webkit-user-select: none; */
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 데스크톱 스타일 */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* 모바일 및 태블릿 스타일 */
+    @media (max-width: 767px) {
+      .container {
+        max-width: 100%;
+        padding: 10px;
+      }
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #eeeded;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .button-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      width: 200px;
+      height: 60px;
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 30px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      background-color: #ffffff;
+      color: #000000;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0 10px;
+    }
+
+    .selected {
+      background-color: #337ab7;
+      color: #ffffff;
+    }
+
+    .submit-button {
+      width: 960px;
+      height: 60px;
+      padding: 10px 20px;
+      font-size: 30px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      background-color: #ffffff;
+      color: #000000;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .submit-button.active {
+      display: inline-block;
+    }
+
+    .result {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+    }
+
+    .result-item {
+      /* 항목 숨기기 */
+      display: none;
+      color: #f07070;
+      margin: 0 10px;
+      font-size: 16px;
+    }
+
+    .openbtn {
+
+      display: flex;
+      justify-content: right;
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <div class="openbtn">
+    <button onclick="toggleItems()">보기</button>
+  </div>
+  <h1 style="text-align: center;">토요장터 고객등록</h1>
+  <div class="container">
+
+
+    <h2>연령</h2>
+    <div class="item">
+      <div class="button-wrapper">
+        <button class="button" id="button1">10대미만</button>
+        <button class="button" id="button2">10,20대</button>
+        <button class="button" id="button3">30대</button>
+        <button class="button" id="button4">40대</button>
+        <button class="button" id="button5">50대이상</button>
+      </div>
+      <h2>지역</h2>
+      <div class="button-wrapper">
+        <button class="button" id="button6">고성</button>
+        <button class="button" id="button7">경남</button>
+        <button class="button" id="button8">그외</button>
+      </div>
+      <div class="button-wrapper">
+        <button class="submit-button" id="submit">고객등록</button>
+        <!-- <div class="result">
+            <div class="result-item" id="result1">10대: 0</div>
+            <div class="result-item" id="result2">20대: 0</div>
+            <div class="result-item" id="result3">30대: 0</div>
+            <div class="result-item" id="result4">40대: 0</div>
+            <div class="result-item" id="result5">50대: 0</div>
+            <div class="result-item" id="result6">고성: 0</div>
+            <div class="result-item" id="result7">경남: 0</div>
+            <div class="result-item" id="result8">기타: 0</div> -->
+      </div>
+      <!-- 항목 숨기기 토글 -->
+    </div>
+
+    <div class="result">
+      <div class="result-item" id="result1">10대: 0</div>
+      <div class="result-item" id="result2">20대: 0</div>
+      <div class="result-item" id="result3">30대: 0</div>
+      <div class="result-item" id="result4">40대: 0</div>
+      <div class="result-item" id="result5">50대: 0</div>
+      <div class="result-item" id="result6">고성: 0</div>
+      <div class="result-item" id="result7">경남: 0</div>
+      <div class="result-item" id="result8">기타: 0</div>
+    </div>
+
+    <!-- <div class="openbtn">
+      <button onclick="toggleItems()">보기</button> -->
+    </div>
+    <script>
+      function toggleItems() {
+        var result1 = document.getElementById("result1");
+        var result2 = document.getElementById("result2");
+        var result3 = document.getElementById("result3");
+        var result4 = document.getElementById("result4");
+        var result5 = document.getElementById("result5");
+        var result6 = document.getElementById("result6");
+        var result7 = document.getElementById("result7");
+        var result8 = document.getElementById("result8");
+
+        if (result1.style.display === "none") {
+          result1.style.display = "block";
+          result2.style.display = "block";
+          result3.style.display = "block";
+          result4.style.display = "block";
+          result5.style.display = "block";
+          result6.style.display = "block";
+          result7.style.display = "block";
+          result8.style.display = "block";
+        } else {
+          result1.style.display = "none";
+          result2.style.display = "none";
+          result3.style.display = "none";
+          result4.style.display = "none";
+          result5.style.display = "none";
+          result6.style.display = "none";
+          result7.style.display = "none";
+          result8.style.display = "none";
+        }
+      }
+
+      var buttons1 = document.querySelectorAll('#button1, #button2, #button3,#button4,#button5');
+      var buttons2 = document.querySelectorAll('#button6, #button7, #button8');
+      var submitButton = document.getElementById('submit');
+
+      var buttonCount = {
+        button1: 0,
+        button2: 0,
+        button3: 0,
+        button4: 0,
+        button5: 0,
+        button6: 0,
+        button7: 0,
+        button8: 0
+      };
+
+      buttons1.forEach(function (button) {
+        button.addEventListener('click', function () {
+          buttons1.forEach(function (btn) {
+            btn.classList.remove('selected');
+          });
+          button.classList.add('selected');
+          checkSubmission();
+        });
+      });
+
+      buttons2.forEach(function (button) {
+        button.addEventListener('click', function () {
+          buttons2.forEach(function (btn) {
+            btn.classList.remove('selected');
+          });
+          button.classList.add('selected');
+          checkSubmission();
+        });
+      });
+
+      function checkSubmission() {
+        var selectedButton1 = document.querySelector('#button1.selected, #button2.selected, #button3.selected, #button4.selected, #button5.selected');
+        var selectedButton2 = document.querySelector('#button6.selected, #button7.selected, #button8.selected');
+
+        if (selectedButton1 && selectedButton2) {
+          submitButton.classList.add('active');
+        } else {
+          submitButton.classList.remove('active');
+        }
+      }
+
+      submitButton.addEventListener('click', function () {
+        var selectedButton1 = document.querySelector('#button1.selected, #button2.selected, #button3.selected, #button4.selected, #button5.selected');
+        var selectedButton2 = document.querySelector('#button6.selected, #button7.selected, #button8.selected');
+
+        if (selectedButton1) {
+          buttonCount[selectedButton1.id]++;
+        }
+
+        if (selectedButton2) {
+          buttonCount[selectedButton2.id]++;
+        }
+
+        updateResult();
+        // alert('제출 버튼이 클릭되었습니다.');
+
+        buttons1.forEach(function (button) {
+          button.classList.remove('selected');
+        });
+
+        buttons2.forEach(function (button) {
+          button.classList.remove('selected');
+        });
+
+        submitButton.classList.remove('active');
+      });
+
+            // 결과 업데이트
+      function updateResult() {
+        Object.keys(buttonCount).forEach(function (key) {
+          var buttonName = document.getElementById(key).innerText;
+          var resultElement = document.getElementById('result' + key.substring(6));
+          resultElement.innerText = buttonName + ': ' + buttonCount[key];
+        });
+      }
+    </script>
+  </div>
+</body>
+
+</html>
