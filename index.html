@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Selection</title>
+</head>
+<body>
+    <form method="POST" action="/">
+        <input type="radio" name="button" value="1"> Button 1<br>
+        <input type="radio" name="button" value="2"> Button 2<br>
+        <input type="radio" name="button" value="3"> Button 3<br>
+        <input type="radio" name="button" value="4"> Button 4<br>
+        <input type="radio" name="button" value="5"> Button 5 (기록하기)<br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <h3>기록된 버튼:</h3>
+    <ul>
+        {% for recorded_button in recorded_buttons %}
+        <li>{{ recorded_button }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
